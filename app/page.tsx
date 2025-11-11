@@ -18,7 +18,8 @@ export default function LandingPage() {
               <div className="flex flex-col justify-center space-y-4 gap-8">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    PLZ<br></br>프로젝트 아이디어 공유 플랫폼
+                    <img src="/PLZLogo.svg" alt="PLZ Logo" className="w-[6rem] pb-3" />
+                    프로젝트 아이디어 공유 플랫폼
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
