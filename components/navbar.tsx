@@ -1,6 +1,6 @@
-import { BookOpen } from "lucide-react";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { BookOpen } from 'lucide-react';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -14,24 +14,15 @@ export default function Navbar() {
           <Link href="/" className="text-sm font-medium hover:text-primary">
             프로젝트 소개
           </Link>
-          <Link
-            href="/ideas/teachers"
-            className="text-sm font-medium hover:text-primary"
-          >
-            선생님의 생각
+          <Link href="/ideas/teachers" className="text-sm font-medium hover:text-primary">
+            선생님 아이디어
           </Link>
-          <Link
-            href="/ideas/students"
-            className="text-sm font-medium hover:text-primary"
-          >
-            학생들의 생각
+          <Link href="/ideas/students" className="text-sm font-medium hover:text-primary">
+            학생 아이디어
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Link
-            href="/login"
-            className="text-sm font-medium hover:underline underline-offset-4"
-          >
+          <Link href="/login" className="text-sm font-medium hover:underline underline-offset-4">
             로그인
           </Link>
           <Button asChild size="sm">

@@ -24,12 +24,12 @@ export default function LandingPage() {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link href="/ideas/teachers">
                     <Button size="lg" className="gap-1">
-                      선생님의 아이디어 보기 <ChevronRight className="h-4 w-4" />
+                      선생님 아이디어 보기 <ChevronRight className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/ideas/students">
                     <Button variant="outline" size="lg">
-                      학생들의 아이디어 보기
+                      학생들 아이디어 보기
                     </Button>
                   </Link>
                 </div>
@@ -63,7 +63,7 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <Lightbulb className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold">선생님의 생각</h3>
+                <h3 className="text-xl font-bold">선생님 아이디어</h3>
                 <p className="text-center text-muted-foreground">
                   선생님이 학교에서 필요하다고 생각하는 서비스 아이디어를 제안하고, 학생들은 그 아이디어에 맞추어 학교
                   시스템에 통합되는 서비스를 제작합니다.
@@ -73,7 +73,7 @@ export default function LandingPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                   <GraduationCap className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold">학생들의 생각</h3>
+                <h3 className="text-xl font-bold">학생 아이디어</h3>
                 <p className="text-center text-muted-foreground">
                   학생들이 학교에서 만들고 싶은 서비스를 제안하고, 관심있는 선생님들이 해당 서비스를 실제로 학교
                   시스템에서 사용할 수 있도록 돕습니다.
