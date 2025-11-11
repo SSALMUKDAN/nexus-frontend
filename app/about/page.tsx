@@ -69,9 +69,8 @@ export default function AboutPage() {
                 href={`https://github.com/${contributor.githubUsername}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group"
               >
-                <div className="bg-card border rounded-lg p-6 text-center hover:shadow-lg transition-all duration-200 group-hover:scale-105">
+                <div className="bg-card p-6 text-center">
                   <div className="relative w-20 h-20 mx-auto mb-4">
                     <Image
                       src={contributor.avatarUrl}
