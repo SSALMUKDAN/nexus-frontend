@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { BookOpen, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,9 +23,34 @@ export default function LoginPage() {
     setShowPassword(!showPassword);
   };
 
+  const router = useRouter();
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+    axios.post("/api/auth/login", data).then((res) => {
+      if (res.status === 200) {
+        alert("로그인이 완료되었습니다.");
+        router.push("/");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
+    });
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40 px-4 py-12">
       <Card className="w-full max-w-md">
+        <Link className="absolute mt-2 ml-2" href="/">
+          <Button className="bg-transparent text-slate-400 hover:bg-slate-100 rounded-full">
+            &lt;
+          </Button>
+        </Link>
         <CardHeader className="space-y-2 text-center">
           <div className="flex justify-center mb-2">
             <div className="flex items-center gap-2">
@@ -34,7 +61,7 @@ export default function LoginPage() {
           <CardTitle className="text-2xl">로그인</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input

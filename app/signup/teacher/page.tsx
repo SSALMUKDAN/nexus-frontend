@@ -6,6 +6,7 @@ import { BookOpen, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import axios from "axios";
 import {
   Card,
   CardContent,
@@ -13,10 +14,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,15 +34,24 @@ export default function SignupPage() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    if (formData.get("password") !== formData.get("confirmPassword")) {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
     const data = {
-      fullName: formData.get("fullName"),
-      workfor: formData.get("workfor"),
+      name: formData.get("fullName"),
+      workPlace: formData.get("workPlace"),
       email: formData.get("email"),
       password: formData.get("password"),
-      confirmPassword: formData.get("confirmPassword"),
+      role: "TEACHER",
     };
-
-    console.log("Form Data:", data);
+    axios.post("/api/user/signup", data).then((res) => {
+      if (res.status === 200) {
+        alert("회원가입이 완료되었습니다.");
+        router.push("/login");
+      } else {
+        alert("회원가입에 실패하였습니다.");
+      }
+    });
   };
 
   return (
@@ -74,8 +87,12 @@ export default function SignupPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="workfor">담당부서</Label>
-              <Input id="workfor" name="workfor" placeholder="선택사항입니다" />
+              <Label htmlFor="workPlace">담당부서</Label>
+              <Input
+                id="workPlace"
+                name="workPlace"
+                placeholder="선택사항입니다"
+              />
             </div>
 
             <div className="space-y-2">

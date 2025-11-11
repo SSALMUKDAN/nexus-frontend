@@ -13,10 +13,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,14 +34,24 @@ export default function SignupPage() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    if (formData.get("password") !== formData.get("confirmPassword")) {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
     const data = {
-      fullName: formData.get("fullName"),
+      name: formData.get("fullName"),
       studentId: formData.get("studentId"),
       email: formData.get("email"),
       password: formData.get("password"),
-      confirmPassword: formData.get("confirmPassword"),
+      role: "STUDENT",
     };
-    //TODO: Handle form submission
+    axios.post("/api/user/signup", data).then((res) => {
+      if (res.status === 200) {
+        alert("회원가입이 완료되었습니다.");
+        router.push("/login");
+      } else {
+        alert("회원가입에 실패하였습니다.");
+      }
+    });
     console.log("Form Data:", data);
   };
 
